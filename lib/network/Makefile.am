@@ -11,5 +11,8 @@ libabnetwork_la_SOURCES =  \
 	packet-type-list.vala \
 	network.vala
 
+libabnetwork_la_VALAFLAGS = --vapi \
+	libabnetwork.vapi 
+
 libabnetwork_la_LIBADD = $(glib-2.0_LIBS) \
 	$(ARBORE_LIBS) 
