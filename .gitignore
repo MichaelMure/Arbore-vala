@@ -1,6 +1,9 @@
 Makefile.in
 Makefile
 *.c
+*.o
+*.lo
+*.la
 aclocal.m4
 autom4te.cache
 config.guess
@@ -15,3 +18,9 @@ ltmain.sh
 missing
 *.stamp
 .anjuta*
+.deps
+.libs
+config.h
+libtool
+stamp-h1
+src/arbore
