@@ -12,7 +12,9 @@ libabnetwork_la_SOURCES =  \
 	network.vala
 
 libabnetwork_la_VALAFLAGS = --vapi \
-	libabnetwork.vapi 
+	libabnetwork.vapi \
+	--library=network \
+	--header=libabnetwork.h 
 
 libabnetwork_la_LIBADD = $(glib-2.0_LIBS) \
 	$(ARBORE_LIBS) 

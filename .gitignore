@@ -4,6 +4,8 @@ Makefile
 *.o
 *.lo
 *.la
+*.h
+*.vapi
 aclocal.m4
 autom4te.cache
 config.guess
@@ -17,7 +19,7 @@ install-sh
 ltmain.sh
 missing
 *.stamp
-.anjuta*
+*.anjuta
 .deps
 .libs
 config.h
