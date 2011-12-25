@@ -19,7 +19,8 @@ dnl Check for vala
 AM_PROG_VALAC([0.10.0])
 
 
-PKG_CHECK_MODULES(ARBORE, [gtk+-3.0 ])
+PKG_CHECK_MODULES(ARBORE, glib-2.0
+[gtk+-3.0 ])
 
 
 AC_OUTPUT([
@@ -27,5 +28,6 @@ Makefile
 src/Makefile
 lib/Makefile
 lib/network/Makefile
+lib/util/Makefile
 
 ])
