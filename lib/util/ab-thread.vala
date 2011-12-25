@@ -24,13 +24,16 @@ public errordomain Ab_ThreadError {
 
 public abstract class Ab_Thread : GLib.Object {
 
+  /** Constructor */
   public Ab_Thread () {
   }
 
+  /** Destructor */
   ~Ab_Thread () {
     stop();
   }
 
+  /** Start the thead */
   public void start() throws Ab_ThreadError {
     if(is_running ())
       return;
@@ -53,6 +56,7 @@ public abstract class Ab_Thread : GLib.Object {
     }
   }
 
+  /** Stop the thread */
   public void stop() {
     if(!is_running ())
       return;
@@ -61,23 +65,25 @@ public abstract class Ab_Thread : GLib.Object {
     on_stop();
   }
 
+  /** @return true if the thread is running */
   bool is_running() {
     return running;
   }
 
-  /* Actual working loop */
+  /** Actual working loop */
   protected abstract void loop();
 
-  /* Called before the main loop starts */
+  /** Called before the main loop starts */
   protected virtual void on_start() {}
 
-  /* Called after the main loop finished */
+  /** Called after the main loop finished */
   protected virtual void on_stop() {}
 
 
-  private unowned Thread<void*> thread_id = null;
-  private bool running = false;
+  private unowned Thread<void*> thread_id = null; /** handle to the actual thread */
+  private bool running = false; /** true if the thread is running. */
 
+  /** Internal function lanched by the thread. */
   private void* do_loop () {
     while (is_running ())
       loop ();
