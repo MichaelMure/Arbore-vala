@@ -13,10 +13,6 @@ AM_CPPFLAGS = \
 	-DPACKAGE_DATA_DIR=\""$(datadir)"\" \
 	$(ARBORE_CFLAGS)
 
-AM_CFLAGS =\
-	 -Wall\
-	 -g
-
 bin_PROGRAMS = arbore
 
 arbore_SOURCES = \
