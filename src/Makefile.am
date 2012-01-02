@@ -4,8 +4,7 @@ arbore_SOURCES = \
 	arbore.vala \
 	network/network.vala \
 	network/packet-type-list.vala \
-	util/ab-thread.vala \
-	util/ab-bloc-lock-mutex.vala
+	util/ab-thread.vala
 
 INCLUDES = \
 	-include config.h \
