@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+_Name=Arbore
+_GenericName=Decentralized file sharing network
+_Comment=Decentralized file sharing network dedicated to give back your data.
+Exec=arbore
+Icon=arbore
+Terminal=false
+Categories=Internet
+StartupNotify=true
