@@ -1,31 +1,28 @@
-## Process this file with automake to produce Makefile.in
+bin_PROGRAMS = arbore
 
-## Created by Anjuta
+arbore_SOURCES = \
+	arbore.vala \
+	network/network.vala \
+	network/packet-type-list.vala \
+	util/ab-thread.vala
+
+INCLUDES = \
+	-include config.h \
+	$(ARBORE_CFLAGS) \
+	-DLOCALEDIR=\""$(localedir)"\" \
+	-DPKGDATADIR=\""$(pkgdatadir)"\" \
+	-DPKGLIBDIR=\""$(pkglibdir)"\"
+
+VALAFLAGS = \
+	--vapidir=$(srcdir)/../vapi --pkg config \
+	@ARBORE_PACKAGES@
+
+arbore_LDADD = \
+	$(ARBORE_LIBS)
 
 
 uidir = $(datadir)/arbore/ui
 ui_DATA = arbore.ui
-
-
-AM_CPPFLAGS = \
-	-DPACKAGE_LOCALE_DIR=\""$(prefix)/$(DATADIRNAME)/locale"\" \
-	-DPACKAGE_SRC_DIR=\""$(srcdir)"\" \
-	-DPACKAGE_DATA_DIR=\""$(datadir)"\" \
-	$(ARBORE_CFLAGS)
-
-bin_PROGRAMS = arbore
-
-arbore_SOURCES = \
-	arbore.vala config.vapi
-
-arbore_VALAFLAGS =  \
-	--pkg gtk+-3.0
-
-arbore_LDFLAGS = \
-	-Wl,--export-dynamic
-
-arbore_LDADD = $(ARBORE_LIBS)
-
 
 EXTRA_DIST = $(ui_DATA)
 

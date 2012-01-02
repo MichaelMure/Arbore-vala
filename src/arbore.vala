@@ -26,7 +26,7 @@ public class Main : Object
 	 * or installing
 	 */
 	//const string UI_FILE = Config.PACKAGE_DATA_DIR + "/" + "arbore.ui";
-	const string UI_FILE = "src/arbore.ui";
+	const string UI_FILE = "arbore.ui";
 
 
 	public Main ()
@@ -56,8 +56,9 @@ public class Main : Object
 	static int main (string[] args) 
 	{
 		Gtk.init (ref args);
-		var app = new Main ();
-
+		//var app = new Main ();
+		new Main ();
+		
 		Gtk.main ();
 		
 		return 0;

@@ -1,26 +1,17 @@
+# Makefile.am
 
+SUBDIRS = \
+	data \
+	src \
+	vapi \
+	po
 
-AM_CFLAGS = -Wall \
-	-g 
-## Process this file with automake to produce Makefile.in
-## Created by Anjuta
+EXTRA_DIST = \
+	intltool-extract.in \
+	intltool-merge.in \
+	intltool-update.in
 
-SUBDIRS = src \
-	lib 
-
-arboredocdir = ${prefix}/doc/arbore
-arboredoc_DATA = \
-	README\
-	COPYING\
-	AUTHORS\
-	ChangeLog\
-	INSTALL\
-	NEWS
-
-
-EXTRA_DIST = $(arboredoc_DATA)
-
-
-# Remove doc directory on uninstall
-uninstall-local:
-	-rm -r $(arboredocdir)
+DISTCLEANFILES = \
+	intltool-extract \
+	intltool-merge \
+	intltool-update

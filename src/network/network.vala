@@ -16,10 +16,14 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
-public class Network : GLib.Thread {
+public class Network : Ab_Thread {
 
   // Constructor
   public Network () {
+
+  }
+
+  protected override void loop() {
 
   }
 
