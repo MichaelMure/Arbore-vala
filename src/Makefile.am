@@ -3,7 +3,7 @@ bin_PROGRAMS = arbore
 arbore_SOURCES = \
 	arbore.vala \
 	network/network.vala \
-	network/packet-type-list.vala \
+	network/ab-packet-type-list.vala \
 	util/ab-thread.vala
 
 INCLUDES = \

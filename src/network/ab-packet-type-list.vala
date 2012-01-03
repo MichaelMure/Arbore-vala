@@ -16,15 +16,15 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
-public class PacketTypeList : GLib.Object {
+public class Ab_PacketTypeList : GLib.Object {
 
-  // Constructor
-  public PacketTypeList () {
+	// Constructor
+	public Ab_PacketTypeList () {
 
-  }
+	}
 
-  /* Method definitions */
-  public void RegisterType () {
-    // TODO: Add implementation here.
-  }
+	/* Method definitions */
+	public void RegisterType () {
+		// TODO: Add implementation here.
+	}
 }
