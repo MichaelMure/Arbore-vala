@@ -2,7 +2,7 @@ bin_PROGRAMS = arbore
 
 arbore_SOURCES = \
 	arbore.vala \
-	network/network.vala \
+	network/ab-network.vala \
 	network/ab-packet-type-list.vala \
 	network/ab-packet-handler.vala \
 	network/ab-packet.vala \
