@@ -7,7 +7,8 @@ arbore_SOURCES = \
 	network/ab-packet-handler.vala \
 	network/ab-packet.vala \
 	network/ab-host.vala \
-	util/ab-thread.vala
+	util/ab-thread.vala \
+	util/ab-log.vala
 
 INCLUDES = \
 	-include config.h \
