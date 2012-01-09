@@ -19,99 +19,99 @@
 using Gee;
 
 public errordomain Ab_NetworkError {
-	CANT_OPEN_SOCK,
-	CANT_LISTEN,
-	CANT_CONNECT_TO
+  CANT_OPEN_SOCK,
+  CANT_LISTEN,
+  CANT_CONNECT_TO
 }
 
 public class Ab_Network : GLib.Object {
 
-	public Ab_Network () {
+  public Ab_Network () {
 
-	}
+  }
 
-	~Ab_Network () {
-		close_all();
-	}
+  ~Ab_Network () {
+    close_all();
+  }
 
-	/**
-	 * Listen an UDP port.
-	 * @param port  the listened port
-	 * @param packet_type_list  this is the object which describes the packet types and
-	 *                          them handlers.
-	 * @return the opened socket, to use for future call to send() 
-	 */
-	public Socket listen (uint16 port, Ab_PacketTypeList packet_type_list) throws Ab_NetworkError {
-		Socket socket = null;
+  /**
+   * Listen an UDP port.
+   * @param port  the listened port
+   * @param packet_type_list  this is the object which describes the packet types and
+   *                          them handlers.
+   * @return the opened socket, to use for future call to send() 
+   */
+  public Socket listen (uint16 port, Ab_PacketTypeList packet_type_list) throws Ab_NetworkError {
+    Socket socket = null;
 
-		/* create an IPv6 udp socket */
-		try {
-			socket = new Socket (SocketFamily.IPV6,
-			                     SocketType.DATAGRAM,
-			                     SocketProtocol.UDP);
-		}
-		catch(Error e) {
-			throw new Ab_NetworkError.CANT_OPEN_SOCK(e.message);
-		}
+    /* create an IPv6 udp socket */
+    try {
+      socket = new Socket (SocketFamily.IPV6,
+                           SocketType.DATAGRAM,
+                           SocketProtocol.UDP);
+    }
+    catch(Error e) {
+      throw new Ab_NetworkError.CANT_OPEN_SOCK(e.message);
+    }
 
-		/* binding in localhost */
-		var ia = new InetAddress.loopback (SocketFamily.IPV6);
-		var isa = new InetSocketAddress (ia, port);
+    /* binding in localhost */
+    var ia = new InetAddress.loopback (SocketFamily.IPV6);
+    var isa = new InetSocketAddress (ia, port);
 
-		try {
-			socket.bind(isa, true);
-		}
-		catch(Error e) {
-			throw new Ab_NetworkError.CANT_LISTEN(e.message);
-		}
+    try {
+      socket.bind(isa, true);
+    }
+    catch(Error e) {
+      throw new Ab_NetworkError.CANT_LISTEN(e.message);
+    }
 
-		/* add a receive callback */
-		var source = socket.create_source(IOCondition.IN, null);
-		source.set_callback (receive_callback);
-		source.attach (null);
-		
-		lock(lock_) {
-			sockmap_[socket] = packet_type_list;
-		}
-		return socket;
-	}
+    /* add a receive callback */
+    var source = socket.create_source(IOCondition.IN, null);
+    source.set_callback (receive_callback);
+    source.attach (null);
 
-	/** 
-	 * Send a packet to a host, using the socket.
-	 * @param socket a valid socket, obtained with listen()
-	 * @param host the destination host
-	 * @param packet the packet to send
-	 */
-	public bool send(Socket socket, Ab_Host host, Ab_Packet packet) {
-		lock(lock_) {
+    lock(lock_) {
+      sockmap_[socket] = packet_type_list;
+    }
+    return socket;
+  }
 
-		}
-		return false;
-	}
+  /** 
+   * Send a packet to a host, using the socket.
+   * @param socket a valid socket, obtained with listen()
+   * @param host the destination host
+   * @param packet the packet to send
+   */
+  public bool send(Socket socket, Ab_Host host, Ab_Packet packet) {
+    lock(lock_) {
 
-	/**
-	 * Close all the registered sockets.
-	 */
-	public void close_all() {
-		lock(lock_) {
-			foreach(var socket in sockmap_.keys) {
-				try {
-					socket.shutdown(true, true);
-					socket.close();
-				}
-				catch(Error e) {
-					stdout.printf("Error in closing socket: %s", e.message);
-				}
-			}
-			sockmap_.clear();
-		}
-	}
+    }
+    return false;
+  }
 
-	private bool receive_callback (Socket socket, IOCondition condition) {
-		return false;
-	}
+  /**
+   * Close all the registered sockets.
+   */
+  public void close_all() {
+    lock(lock_) {
+      foreach(var socket in sockmap_.keys) {
+        try {
+          socket.shutdown(true, true);
+          socket.close();
+        }
+        catch(Error e) {
+          stdout.printf("Error in closing socket: %s", e.message);
+        }
+      }
+      sockmap_.clear();
+    }
+  }
 
-	private int lock_;
-	private HashMap<Socket, Ab_PacketTypeList> sockmap_;
+  private bool receive_callback (Socket socket, IOCondition condition) {
+    return false;
+  }
+
+  private int lock_;
+  private HashMap<Socket, Ab_PacketTypeList> sockmap_;
 
 }
