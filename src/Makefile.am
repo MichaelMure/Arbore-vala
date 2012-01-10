@@ -4,6 +4,7 @@ arbore_SOURCES = \
 	arbore.vala \
 	network/ab-network.vala \
 	network/ab-packet-type-list.vala \
+	network/ab-packet-type.vala \
 	network/ab-packet-handler.vala \
 	network/ab-packet.vala \
 	network/ab-host.vala \
