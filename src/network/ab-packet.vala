@@ -19,9 +19,15 @@
 /** A network packet */
 public class Ab_Packet : GLib.Object {
 
-    // Constructor
-    public Ab_Packet () {
-        
-    }
+  public enum Flag {
+    REQUESTACK  = 1 << 0,
+    ACK         = 1 << 1,
+    MUSTROUTE   = 1 << 2
+  }
+
+  // Constructor
+  public Ab_Packet () {
+
+  }
 
 }
