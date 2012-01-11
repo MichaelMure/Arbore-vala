@@ -19,8 +19,5 @@
 /** Base class for a packet handler. */
 public abstract class Ab_PacketHandler : GLib.Object {
 
-  public Ab_PacketHandler () {
-  }
-
-	public abstract void handle(Ab_PacketTypeList pckt_type_list, Ab_Host sender, Ab_Packet packet);
+  public abstract void handle(Ab_PacketTypeList pckt_type_list, Ab_Host sender, Ab_Packet packet);
 }
