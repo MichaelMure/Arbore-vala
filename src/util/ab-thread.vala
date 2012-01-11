@@ -35,10 +35,10 @@ public abstract class Ab_Thread : GLib.Object {
 
   /** Start the thead */
   public void start() throws Ab_ThreadError {
-    if(is_running ())
+    if(is_running)
       return;
 
-    running = true;
+    is_running = true;
     on_start ();
 
     try {
@@ -46,29 +46,27 @@ public abstract class Ab_Thread : GLib.Object {
     }
     catch (GLib.ThreadError e)
     {
-      running = false;
+      is_running = false;
       throw new Ab_ThreadError.CANT_CREATE(e.message);
     }
 
     if(this.thread_id == null) {
-      running = false;
+      is_running = false;
       throw new Ab_ThreadError.CANT_CREATE("Thread id is null.");
     }
   }
 
   /** Stop the thread */
   public void stop() {
-    if(!is_running ())
+    if(!is_running)
       return;
-    running = false;
+    is_running = false;
     thread_id.join ();
     on_stop();
   }
 
-  /** @return true if the thread is running */
-  bool is_running() {
-    return running;
-  }
+	/** true if the thread is running. */
+	public bool is_running { get; private set; default = false; }
 
   /** Actual working loop */
   protected abstract void loop();
@@ -81,11 +79,10 @@ public abstract class Ab_Thread : GLib.Object {
 
 
   private unowned Thread<void*> thread_id = null; /** handle to the actual thread */
-  private bool running = false; /** true if the thread is running. */
 
   /** Internal function lanched by the thread. */
   private void* do_loop () {
-    while (is_running ())
+    while (is_running)
       loop ();
 
     thread_id.exit (null);
