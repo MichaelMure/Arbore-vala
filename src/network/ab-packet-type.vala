@@ -45,26 +45,26 @@ public class Ab_PacketType : GLib.Object {
    * @endcode
    */
   public Ab_PacketType (uint32 type_number, Ab_PacketHandler handler, uint32 flags, string name, ...) {
-    type_number_ = type_number;
-    handler_ = handler;
-    flags_ = flags;
-    name_ = name;
+    this.type_number = type_number;
+    this.handler = handler;
+    this.flags = flags;
+    this.name = name;
 
     var l = va_list();
     PacketArgType ? arg = l.arg();
     while(arg != null) {
-      arguments_.add(arg);
+      this.arguments.add(arg);
       arg = l.arg();
     }
   }
 
   public string to_string() {
-    return @"$name_ ($type_number_)";
+    return @"$name ($type_number)";
   }
 
-  public uint32 type_number_ { get; private set; }
-  public string name_ { get; private set; }
-  public Ab_PacketHandler handler_ { get; private set; }
-  public uint32 flags_ { get; private set; }
-  public ArrayList<uint32> arguments_ { get; private set; }
+  public uint32 type_number { get; private set; }
+  public string name { get; private set; }
+  public Ab_PacketHandler handler { get; private set; }
+  public uint32 flags { get; private set; }
+  public ArrayList<uint32> arguments { get; private set; }
 }

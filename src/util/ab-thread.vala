@@ -65,8 +65,8 @@ public abstract class Ab_Thread : GLib.Object {
     on_stop();
   }
 
-	/** true if the thread is running. */
-	public bool is_running { get; private set; default = false; }
+  /** true if the thread is running. */
+  public bool is_running { get; private set; default = false; }
 
   /** Actual working loop */
   protected abstract void loop();

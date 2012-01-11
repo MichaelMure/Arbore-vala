@@ -29,22 +29,22 @@ public class Ab_PacketTypeList : GLib.Object {
 
   /** Register a new PacketType */
   public void register_type (Ab_PacketType type) {
-    lock(PacketTypeMap_) {
-      assert(!PacketTypeMap_.has_key(type.type_number_));
+    lock(PacketTypeMap) {
+      assert(!PacketTypeMap.has_key(type.type_number));
       Ab_Log.debug(@"Register $type");
-      PacketTypeMap_.set(type.type_number_, type);
+      PacketTypeMap.set(type.type_number, type);
     }
   }
 
   /** Retrieve the PacketType corresponding to the type number */
   public Ab_PacketType get_packet_type(uint32 type_number) throws Ab_PacketTypeListError {
-    lock(PacketTypeMap_) {
-      var type = PacketTypeMap_.get(type_number);
+    lock(PacketTypeMap) {
+      var type = PacketTypeMap.get(type_number);
       if(type == null)
         throw new Ab_PacketTypeListError.UNKNOW_TYPE("Unknow type number");
       return type;
     }
   }
 
-  private HashMap<uint32, Ab_PacketType> PacketTypeMap_;
+  private HashMap<uint32, Ab_PacketType> PacketTypeMap;
 }

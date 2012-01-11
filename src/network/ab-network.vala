@@ -71,7 +71,7 @@ public class Ab_Network : GLib.Object {
     source.attach (null);
 
     lock(lock_) {
-      sockmap_[socket] = packet_type_list;
+      sockmap[socket] = packet_type_list;
     }
     return socket;
   }
@@ -94,7 +94,7 @@ public class Ab_Network : GLib.Object {
    */
   public void close_all() {
     lock(lock_) {
-      foreach(var socket in sockmap_.keys) {
+      foreach(var socket in sockmap.keys) {
         try {
           socket.shutdown(true, true);
           socket.close();
@@ -103,7 +103,7 @@ public class Ab_Network : GLib.Object {
           Ab_Log.error("Error in closing socket: $(e.message)");
         }
       }
-      sockmap_.clear();
+      sockmap.clear();
     }
   }
 
@@ -112,6 +112,6 @@ public class Ab_Network : GLib.Object {
   }
 
   private int lock_;
-  private HashMap<Socket, Ab_PacketTypeList> sockmap_;
+  private HashMap<Socket, Ab_PacketTypeList> sockmap;
 
 }
