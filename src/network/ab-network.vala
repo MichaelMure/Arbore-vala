@@ -100,7 +100,7 @@ public class Ab_Network : GLib.Object {
           socket.close();
         }
         catch(Error e) {
-          stdout.printf("Error in closing socket: %s", e.message);
+          Ab_Log.error("Error in closing socket: $(e.message)");
         }
       }
       sockmap_.clear();
