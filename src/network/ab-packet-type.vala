@@ -44,8 +44,8 @@ public class Ab_PacketType : GLib.Object {
    * Ab_PacketType(10, MyHandler, Packet::MUSTROUTE|Packet::REQUESTACK, "CHAT", T_STR, T_UINT32, T_CHUNK);
    * @endcode
    */
-  public Ab_PacketType (uint32 type, Ab_PacketHandler handler, uint32 flags, string name, ...) {
-    type_ = type;
+  public Ab_PacketType (uint32 type_number, Ab_PacketHandler handler, uint32 flags, string name, ...) {
+    type_number_ = type_number;
     handler_ = handler;
     flags_ = flags;
     name_ = name;
@@ -58,8 +58,11 @@ public class Ab_PacketType : GLib.Object {
     }
   }
 
+  public string to_string() {
+    return @"$name_ ($type_number_)";
+  }
 
-  public uint32 type_ { get; private set; }
+  public uint32 type_number_ { get; private set; }
   public string name_ { get; private set; }
   public Ab_PacketHandler handler_ { get; private set; }
   public uint32 flags_ { get; private set; }
