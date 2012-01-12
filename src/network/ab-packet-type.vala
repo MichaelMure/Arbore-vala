@@ -20,17 +20,6 @@ using Gee;
 
 public class Ab_PacketType : GLib.Object {
 
-  public enum PacketArgType
-  {
-    UINT32,
-    UINT64,
-    KEY,
-    STR,
-    ADDR,
-    ADDRLIST,
-    CHUNK
-  }
-
   /** PacketType constructor.
    *
    * @param type  this is the type number.
@@ -51,7 +40,7 @@ public class Ab_PacketType : GLib.Object {
     this.name = name;
 
     var l = va_list();
-    PacketArgType ? arg = l.arg();
+    Ab_PacketArg.Type ? arg = l.arg();
     while(arg != null) {
       this.arguments.add(arg);
       arg = l.arg();
