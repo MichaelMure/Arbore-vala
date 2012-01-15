@@ -18,6 +18,8 @@
 
 using Gee;
 
+/** This class is a description of a packet type and its content. It does not hold
+ * any actual value. */
 public class Ab_PacketType : GLib.Object {
 
   /** PacketType constructor.
@@ -26,11 +28,11 @@ public class Ab_PacketType : GLib.Object {
    * @param handler  the handler object.
    * @param flags  flags for packets created with this packet type.
    * @param name  name of message, for debug information.
-   * @param ...  put here a list of PacketArgType
+   * @param ...  put here a list of Ab_PacketArg.Type
    *
    * For example:
    * @code
-   * Ab_PacketType(10, MyHandler, Packet::MUSTROUTE|Packet::REQUESTACK, "CHAT", T_STR, T_UINT32, T_CHUNK);
+   * Ab_PacketType(10, MyHandler, Packet::MUSTROUTE|Packet::REQUESTACK, "CHAT", STR, UINT32, CHUNK);
    * @endcode
    */
   public Ab_PacketType (uint32 type_number, Ab_PacketHandler handler, uint32 flags, string name, ...) {
@@ -40,10 +42,10 @@ public class Ab_PacketType : GLib.Object {
     this.name = name;
 
     var l = va_list();
-    Ab_PacketArg.Type ? arg = l.arg();
-    while(arg != null) {
-      this.arguments.add(arg);
-      arg = l.arg();
+    Ab_PacketArg.Type ? arg_type = l.arg();
+    while(arg_type != null) {
+      this.arguments.add(arg_type);
+      arg_type = l.arg();
     }
   }
 
@@ -51,9 +53,14 @@ public class Ab_PacketType : GLib.Object {
     return @"$name ($type_number)";
   }
 
+  /** Identification number for this type */
   public uint32 type_number { get; private set; }
+  /** Textual name */
   public string name { get; private set; }
+  /** Handler to treat it */
   public Ab_PacketHandler handler { get; private set; }
+  /** Default flag */
   public uint32 flags { get; private set; }
-  public ArrayList<uint32> arguments { get; private set; }
+  /** Description of the content of the packet */
+  public ArrayList<Ab_PacketArg.Type> arguments { get; private set; }
 }
