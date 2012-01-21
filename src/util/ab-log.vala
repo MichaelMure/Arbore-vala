@@ -16,6 +16,8 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
+using Posix;
+
 namespace Ab_Log {
 
   public enum LogLevel {
@@ -40,6 +42,23 @@ namespace Ab_Log {
           return "ERROR";
         case INFO:
           return "INFO";
+        default:
+          assert_not_reached();
+      }
+    }
+
+    public int syslog_level() {
+      switch (this) {
+        case DEBUG:
+        case PARSE:
+        case ROUTING:
+          return Posix.LOG_DEBUG;
+        case WARNING:
+          return Posix.LOG_WARNING;
+        case ERROR:
+          return Posix.LOG_ERR;
+        case INFO:
+          return Posix.LOG_NOTICE;
         default:
           assert_not_reached();
       }
@@ -102,10 +121,10 @@ namespace Ab_Log {
   private void print(string message, LogLevel level) {
     if((level & logged_levels) != 0) {
       if(to_syslog) {
-        /* TODO with Posix.syslog */
+        Posix.syslog(level.syslog_level(), message);
       }
 
-      GLib.print("%s [%s] %s",
+      GLib.print("%s [%s] %s\n",
                  Time().local(time_t()).to_string(),
                  level.to_string(),
                  message);

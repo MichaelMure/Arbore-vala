@@ -18,7 +18,7 @@ AC_PROG_INSTALL
 IT_PROG_INTLTOOL([0.41.1])
 
 pkg_modules="gtk+-3.0 >= 2.14.0"
-ARBORE_PACKAGES="--pkg gtk+-3.0 --pkg gee-1.0 --thread"
+ARBORE_PACKAGES="--pkg gtk+-3.0 --pkg gee-1.0 --pkg posix --thread"
 PKG_CHECK_MODULES(ARBORE, [gtk+-3.0 >= 2.14.0, gee-1.0])
 AC_SUBST(ARBORE_CFLAGS)
 AC_SUBST(ARBORE_LIBS)
