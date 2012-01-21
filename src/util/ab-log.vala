@@ -29,22 +29,7 @@ namespace Ab_Log {
     INFO    = 1 << 5; /* Informations */
 
     public string to_string() {
-      switch (this) {
-        case DEBUG:
-          return "DEBUG";
-        case PARSE:
-          return "PARSE";
-        case ROUTING:
-          return "ROUTING";
-        case WARNING:
-          return "WARNING";
-        case ERROR:
-          return "ERROR";
-        case INFO:
-          return "INFO";
-        default:
-          assert_not_reached();
-      }
+      return ((GLib.EnumClass) (typeof (LogLevel).class_ref())).get_value (this).value_nick;
     }
 
     public int syslog_level() {
