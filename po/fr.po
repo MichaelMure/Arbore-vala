@@ -5,10 +5,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: Arbore\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-01-23 10:00+0100\n"
-"PO-Revision-Date: 2012-01-23 10:04+0100\n"
+"POT-Creation-Date: 2012-01-23 13:52+0100\n"
+"PO-Revision-Date: 2012-01-23 13:54+0100\n"
 "Last-Translator: Michael Muré <batolettre@gmail.com>\n"
 "Language-Team: \n"
 "Language: \n"
@@ -29,4 +29,20 @@ msgstr "Réseau de partage de fichier décentralisé"
 #: ../data/arbore.desktop.in.in.h:3
 msgid "Decentralized file sharing network dedicated to give back your data."
 msgstr "Réseau de partage de fichier conçu pour vous rendre vos données."
+
+#: ../src/network/ab-network.vala:103
+msgid "Error in closing socket: $(e.message)"
+msgstr "Erreur lors de la fermeture du socket: $(e.message)"
+
+#: ../src/network/ab-packet-arg.vala:58
+msgid "Unknow argument"
+msgstr "Argument inconnu"
+
+#: ../src/network/ab-packet-type-list.vala:44
+msgid "Unknow type number"
+msgstr "Numéro de type inconnu"
+
+#: ../src/util/ab-thread.vala:55
+msgid "Thread id is null."
+msgstr "Identifiant de thread nul."
 

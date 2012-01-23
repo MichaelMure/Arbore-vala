@@ -41,7 +41,7 @@ public class Ab_PacketTypeList : GLib.Object {
     lock(PacketTypeMap) {
       var type = PacketTypeMap.get(type_number);
       if(type == null)
-        throw new Ab_PacketTypeListError.UNKNOW_TYPE("Unknow type number");
+        throw new Ab_PacketTypeListError.UNKNOW_TYPE(_("Unknow type number"));
       return type;
     }
   }

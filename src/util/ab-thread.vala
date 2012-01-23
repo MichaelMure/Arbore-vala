@@ -52,7 +52,7 @@ public abstract class Ab_Thread : GLib.Object {
 
     if(this.thread_id == null) {
       is_running = false;
-      throw new Ab_ThreadError.CANT_CREATE("Thread id is null.");
+      throw new Ab_ThreadError.CANT_CREATE(_("Thread id is null."));
     }
   }
 

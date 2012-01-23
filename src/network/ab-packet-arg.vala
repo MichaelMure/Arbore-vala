@@ -32,6 +32,7 @@ public class Ab_PacketArg<T> : GLib.Object {
     CHUNK
   }
 
+
   public Ab_PacketArg(T arg_value) {
     this.arg_value = arg_value;
   }
@@ -54,6 +55,6 @@ public class Ab_PacketArg<T> : GLib.Object {
     else if(typeof(T) == typeof(string)) {
       return (string) arg_value;
     }
-    else return "Unknow argument";
+    else return _("Unknow argument");
   }
 }

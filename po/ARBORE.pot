@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-01-23 10:00+0100\n"
+"POT-Creation-Date: 2012-01-23 13:52+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -27,4 +27,20 @@ msgstr ""
 
 #: ../data/arbore.desktop.in.in.h:3
 msgid "Decentralized file sharing network dedicated to give back your data."
+msgstr ""
+
+#: ../src/network/ab-network.vala:103
+msgid "Error in closing socket: $(e.message)"
+msgstr ""
+
+#: ../src/network/ab-packet-arg.vala:58
+msgid "Unknow argument"
+msgstr ""
+
+#: ../src/network/ab-packet-type-list.vala:44
+msgid "Unknow type number"
+msgstr ""
+
+#: ../src/util/ab-thread.vala:55
+msgid "Thread id is null."
 msgstr ""
