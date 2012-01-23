@@ -1,2 +1,8 @@
 [encoding: UTF-8]
 data/arbore.desktop.in.in
+src/network/ab-network.vala
+src/network/ab-packet-arg.vala
+src/network/ab-packet-type-list.vala
+src/util/ab-thread.vala
+
+
