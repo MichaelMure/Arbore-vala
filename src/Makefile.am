@@ -12,7 +12,8 @@ arbore_SOURCES = \
 	util/ab-key.vala \
 	util/ab-log.vala \
 	util/ab-serializable.vala \
-	util/ab-thread.vala
+	util/ab-thread.vala \
+	util/ab-time.vala
 
 INCLUDES = \
 	-include config.h \
