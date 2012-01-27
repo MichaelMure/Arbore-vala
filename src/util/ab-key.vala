@@ -30,6 +30,8 @@ public class Ab_Key : GLib.Object {
   /* https://bugzilla.gnome.org/show_bug.cgi?id=663887 prevent the next lines
   private static const uint32 NLEN = (KEY_SIZE / (8 * sizeof(uint32))); */
   private static const uint32 NLEN = (KEY_SIZE / (8 * 4));
+  /* Define the size of each key partition when computing the common prefix length. */
+  public static const uint32 KEY_PARTITION_LENGTH = 1;
 
   /** Default constructor: create a null key. */
   public Ab_Key() {
@@ -211,8 +213,15 @@ public class Ab_Key : GLib.Object {
    * @return size of the prefix match
    */
   public uint32 key_index(Ab_Key k) {
-    /* TODO */
-    return 0;
+    uint32 index = 0;
+    for(int i = (int) NLEN-1; i >= 0; i--) {
+      for(int j = 31; j >= 0; j--) {
+        if((t[i] & (1 << j)) == (k.t[i] & (1 << j)))
+          return index / KEY_PARTITION_LENGTH;
+        index++;
+      }
+    }
+    return index / KEY_PARTITION_LENGTH;
   }
 
   /** Calculate the distance between this and another key.
