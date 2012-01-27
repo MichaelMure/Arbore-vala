@@ -103,7 +103,7 @@ public class Ab_Network : GLib.Object {
       }
       catch(Error e) {
         Ab_Log.error(_("Network send error:") + e.message);
-        /* TODO: host.update_stat(0); */
+        host.update_stat(false);
         return false;
       }
 
@@ -123,7 +123,7 @@ public class Ab_Network : GLib.Object {
           socket.close();
         }
         catch(Error e) {
-          Ab_Log.error(_("Error in closing socket: $(e.message)"));
+          Ab_Log.error(_("Error in closing socket: ") + e.message);
         }
       }
       sockmap.clear();

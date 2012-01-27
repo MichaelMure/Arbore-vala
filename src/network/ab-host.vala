@@ -37,4 +37,8 @@ public class Ab_Host : GLib.Object {
     return 0;
   }
 
+  public void update_stat(bool success) {
+
+  }
+
 }
