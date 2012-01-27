@@ -20,6 +20,18 @@ public class Ab_Addr : GLib.Object {
 
   /** Constructor */
   public Ab_Addr () {
+    key = new Ab_Key();
+    inet_addr = new InetSocketAddress(new InetAddress.any(SocketFamily.IPV6), 0);
+  }
+  
+  public Ab_Addr.inet (InetSocketAddress addr) {
+    key = new Ab_Key();
+    inet_addr = addr;
+  }
+  
+  public Ab_Addr.full (InetSocketAddress addr, Ab_Key key) {
+    this.key = key;
+    this.inet_addr = addr;
   }
 
   public InetSocketAddress inet_addr { get; set; }
@@ -31,6 +43,22 @@ public class Ab_Addr : GLib.Object {
 
   public uint32 serialized_size() {
     return 0;
+  }
+  
+  /** Comparaison between two Ab_Addr.
+   *
+   * @param other other Ab_Addr which is compared to.
+   * @return true if two Ab_Addr are equals.
+   */
+  public bool equal(Ab_Addr other) {
+    if(!key.equal(other.key))
+      return false;
+    if(!inet_addr.address.equal(other.inet_addr.address))
+      return false;
+    if(inet_addr.port != other.inet_addr.port)
+      return false;
+    return true;
+  
   }
 
   public string to_string() {
