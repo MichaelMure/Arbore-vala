@@ -49,6 +49,7 @@ public class Ab_PacketType : GLib.Object {
     }
   }
 
+  /** @return the textual representation of this, for debugging purpose */
   public string to_string() {
     return @"$name ($type_number)";
   }

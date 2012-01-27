@@ -69,7 +69,7 @@ public class Ab_Key : GLib.Object {
     t[NLEN-1] /= 2;
   }
 
-
+  /** @return the textual representation of this, for debugging purpose */
   public string to_string() {
     string str = "";
     for(int i = (int) NLEN - 1; i >= 0; i--) {
@@ -78,6 +78,7 @@ public class Ab_Key : GLib.Object {
     return str;
   }
 
+  /** Serialize into the provided buffer */
   public void dump(ref uint8[] buffer) {
 
   }

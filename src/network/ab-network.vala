@@ -27,7 +27,6 @@ public errordomain Ab_NetworkError {
 public class Ab_Network : GLib.Object {
 
   public Ab_Network () {
-
   }
 
   ~Ab_Network () {

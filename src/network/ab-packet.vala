@@ -118,6 +118,7 @@ public class Ab_Packet : GLib.Object {
     flags &= ~flag;
   }
 
+  /** Serialize into the provided buffer */
   public void dump(ref uint8[] buffer) {
 
   }
@@ -137,6 +138,7 @@ public class Ab_Packet : GLib.Object {
     return data_size + get_header_size();
   }
 
+  /** @return the textual representation of this, for debugging purpose */
   public string to_string () {
     var str = @"[$src->$dst] <";
     if(has_flag (Flag.REQUESTACK))

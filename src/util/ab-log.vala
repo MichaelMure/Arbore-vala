@@ -32,6 +32,7 @@ namespace Ab_Log {
       return ((GLib.EnumClass) (typeof (LogLevel).class_ref())).get_value (this).value_nick;
     }
 
+    /** @return the corresponding syslog level. */
     public int syslog_level() {
       switch (this) {
         case DEBUG:

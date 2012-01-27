@@ -39,6 +39,7 @@ public class Ab_PacketArg<T> : GLib.Object {
 
   public T arg_value { get; set; }
 
+  /** @return the textual representation of this, for debugging purpose */
   public string to_string() {
     if(typeof(T) == typeof(uint32)) {
       var val = (uint32) arg_value;
