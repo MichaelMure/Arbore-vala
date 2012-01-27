@@ -19,9 +19,22 @@
 /** This class is an abstraction of an host in the network. */
 public class Ab_Host : GLib.Object {
 
-    // Constructor
-    public Ab_Host () {
-        
-    }
+  public Ab_Host() {
+
+  }
+
+  public Ab_Addr addr { get; set; }
+
+  public string to_string() {
+    return @"$addr";
+  }
+
+  public void dump(ref uint8[] buffer) {
+
+  }
+
+  public uint32 serialized_size() {
+    return 0;
+  }
 
 }
