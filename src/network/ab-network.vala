@@ -39,7 +39,7 @@ public class Ab_Network : GLib.Object {
    * @param port  the listened port
    * @param packet_type_list  this is the object which describes the packet types and
    *                          them handlers.
-   * @return the opened socket, to use for future call to send() 
+   * @return the opened socket, to use for future call to send()
    */
   public Socket listen (uint16 port, Ab_PacketTypeList packet_type_list) throws Ab_NetworkError {
     Socket socket = null;
@@ -76,17 +76,40 @@ public class Ab_Network : GLib.Object {
     return socket;
   }
 
-  /** 
+  /**
    * Send a packet to a host, using the socket.
    * @param socket a valid socket, obtained with listen()
    * @param host the destination host
    * @param packet the packet to send
    */
-  public bool send(Socket socket, Ab_Host host, Ab_Packet packet) {
+  public bool send(Socket socket, Ab_Host host, Ab_Packet packet)
+    requires(!socket.is_closed())
+  {
     lock(lock_) {
+      /* double start = Ab_Time.dtime(); */
 
+      if(packet.seqnum == 0) {
+        packet.seqnum = sequence_number;
+        sequence_number++;
+      }
+
+      Ab_Log.parse(@"S($host) - $packet");
+
+      uint8[] buffer = new uint8[packet.serialized_size()];
+      packet.dump(ref buffer);
+
+      try {
+        socket.send_to(host.addr.inet_addr, buffer, null);
+      }
+      catch(Error e) {
+        Ab_Log.error(_("Network send error:") + e.message);
+        /* TODO: host.update_stat(0); */
+        return false;
+      }
+
+      /* TODO: handle REQUESTHACK flag and resend list, cf C++ code */
+      return true;
     }
-    return false;
   }
 
   /**
@@ -108,10 +131,12 @@ public class Ab_Network : GLib.Object {
   }
 
   private bool receive_callback (Socket socket, IOCondition condition) {
+    Ab_Log.info("Packet received");
     return false;
   }
 
   private int lock_;
   private HashMap<Socket, Ab_PacketTypeList> sockmap;
+  private uint32 sequence_number = 0;
 
 }

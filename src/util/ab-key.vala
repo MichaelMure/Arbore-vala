@@ -76,7 +76,7 @@ public class Ab_Key : GLib.Object {
     return str;
   }
 
-  public void dump(ref char[] buffer) {
+  public void dump(ref uint8[] buffer) {
 
   }
 

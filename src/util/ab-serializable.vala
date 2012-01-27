@@ -19,5 +19,5 @@
 
 public interface Ab_Serializable {
   public abstract void dump(ref char[] buffer);
-  public abstract uint32 get_size();
+  public abstract uint32 serialized_size();
 }

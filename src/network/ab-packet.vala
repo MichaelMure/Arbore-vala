@@ -49,7 +49,7 @@ public errordomain Ab_PacketError {
  * or a pointer to a PacketTypeList object in
  * the constructor which gets data buffer.
  */
-public class Ab_Packet : GLib.Object, Ab_Serializable {
+public class Ab_Packet : GLib.Object {
 
   public enum Flag {
     REQUESTACK  = 1 << 0,  /** This packet request an acknoledge answer. */
@@ -118,17 +118,22 @@ public class Ab_Packet : GLib.Object, Ab_Serializable {
     flags &= ~flag;
   }
 
-  public void dump(ref char[] buffer) {
+  public void dump(ref uint8[] buffer) {
 
   }
 
   /** @return the size of the header serialized, in octet */
-  public uint32 get_header_size() {
-    return 0;
+  public ulong get_header_size() {
+    return Ab_Key.serialized_size()  /* source */
+         + Ab_Key.serialized_size()  /* destination */
+         + sizeof(uint32)            /* type */
+         + sizeof(uint32)            /* data size */
+         + sizeof(uint32)            /* sequence number */
+         + sizeof(uint32);           /* flags */
   }
 
   /** @return the size of the full serialized packet, in octet */
-  public uint32 get_size() {
+  public ulong serialized_size() {
     return data_size + get_header_size();
   }
 
