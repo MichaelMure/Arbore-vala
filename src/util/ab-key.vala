@@ -93,7 +93,7 @@ public class Ab_Key : GLib.Object {
    * @param k other key which is compared to.
    * @return true if two keys are equals.
    */
-  public bool equal(Ab_Key k) {
+  public bool equals(Ab_Key k) {
     for(int i = 0; i < NLEN; i++) {
       if (t[i] != k.t[i])
         return false;

@@ -57,7 +57,7 @@ public class Ab_Addr : GLib.Object {
    * @return true if two Ab_Addr are equals.
    */
   public bool equal(Ab_Addr other) {
-    if(!key.equal(other.key))
+    if(!key.equals(other.key))
       return false;
     if(!inet_addr.address.equal(other.inet_addr.address))
       return false;
