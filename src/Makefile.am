@@ -16,7 +16,7 @@ arbore_SOURCES = \
 	util/ab-thread.vala \
 	util/ab-time.vala
 
-INCLUDES = \
+AM_CPPFLAGS = \
 	-include config.h \
 	$(ARBORE_CFLAGS) \
 	-DLOCALEDIR=\""$(localedir)"\" \
