@@ -1,35 +1,28 @@
+SUBDIRS = \
+	util \
+	network
+
 bin_PROGRAMS = arbore
 
 arbore_SOURCES = \
-	arbore.vala \
-	network/ab-addr.vala \
-	network/ab-network.vala \
-	network/ab-packet-arg.vala \
-	network/ab-packet-type-list.vala \
-	network/ab-packet-type.vala \
-	network/ab-packet-handler.vala \
-	network/ab-packet.vala \
-	network/ab-host.vala \
-	util/ab-key.vala \
-	util/ab-log.vala \
-	util/ab-serializable.vala \
-	util/ab-thread.vala \
-	util/ab-time.vala
+	arbore.vala
 
-AM_CPPFLAGS = \
+arbore_CFLAGS = \
 	-include config.h \
 	$(ARBORE_CFLAGS) \
 	-DLOCALEDIR=\""$(localedir)"\" \
 	-DPKGDATADIR=\""$(pkgdatadir)"\" \
 	-DPKGLIBDIR=\""$(pkglibdir)"\"
 
-VALAFLAGS = \
-	--vapidir=$(srcdir)/../vapi --pkg config \
+arbore_VALAFLAGS = \
+	--vapidir=$(top_srcdir)/vapi \
+	--pkg config \
 	@ARBORE_PACKAGES@
 
 arbore_LDADD = \
-	$(ARBORE_LIBS)
-
+	$(ARBORE_LIBS) \
+	$(top_builddir)/src/util/libarboreutil@LIBARBORE_API_VERSION@.la \
+	$(top_builddir)/src/network/libarborenetwork@LIBARBORE_API_VERSION@.la
 
 uidir = $(datadir)/arbore/ui
 ui_DATA = arbore.ui
@@ -40,3 +33,5 @@ EXTRA_DIST = $(ui_DATA)
 uninstall-local:
 	-rm -r $(uidir)
 	-rm -r $(datadir)/arbore
+
+CLEANFILES = *.h *.c *.stamp

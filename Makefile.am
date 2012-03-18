@@ -4,7 +4,8 @@ SUBDIRS = \
 	data \
 	src \
 	vapi \
-	po
+	po \
+	test
 
 EXTRA_DIST = \
 	intltool-extract.in \
