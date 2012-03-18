@@ -7,7 +7,7 @@ AC_CONFIG_HEADERS([config.h])
 AM_INIT_AUTOMAKE([no-dist-gzip dist-bzip2])
 
 # Enable silent rules is available
-#m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
+m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
 
 AM_MAINTAINER_MODE
 
@@ -53,6 +53,8 @@ AC_CONFIG_FILES([
 	src/network/Makefile
 	src/util/Makefile
 	test/Makefile
+	test/network/Makefile
+	test/util/Makefile
 	vapi/Makefile
 ])
 AC_OUTPUT
