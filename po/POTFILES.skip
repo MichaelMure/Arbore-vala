@@ -1,1 +1,6 @@
 data/arbore.desktop.in
+src/arbore.ui
+src/network/ab-network.c
+src/network/ab-packet-arg.c
+src/network/ab-packet-type-list.c
+src/util/ab-thread.c
