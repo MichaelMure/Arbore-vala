@@ -34,6 +34,3 @@ src/arbore
 Makefile.in.in
 POTFILES
 stamp-it
-data/arbore.desktop
-data/arbore.desktop.in
-vapi/lib*.vapi
