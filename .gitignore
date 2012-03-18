@@ -8,6 +8,7 @@ Makefile
 *~
 aclocal.m4
 autom4te.cache
+compile
 config.guess
 config.h.in
 config.log
@@ -35,3 +36,4 @@ POTFILES
 stamp-it
 data/arbore.desktop
 data/arbore.desktop.in
+vapi/lib*.vapi
