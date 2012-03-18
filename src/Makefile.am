@@ -9,6 +9,7 @@ arbore_SOURCES = \
 
 arbore_CFLAGS = \
 	-include config.h \
+	-I$(top_srcdir)/vapi \
 	$(ARBORE_CFLAGS) \
 	-DLOCALEDIR=\""$(localedir)"\" \
 	-DPKGDATADIR=\""$(pkgdatadir)"\" \
@@ -17,6 +18,8 @@ arbore_CFLAGS = \
 arbore_VALAFLAGS = \
 	--vapidir=$(top_srcdir)/vapi \
 	--pkg config \
+	--pkg libarboreutil-@LIBARBORE_API_VERSION@ \
+	--pkg libarborenetwork-@LIBARBORE_API_VERSION@ \
 	@ARBORE_PACKAGES@
 
 arbore_LDADD = \
