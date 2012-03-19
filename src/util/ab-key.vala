@@ -137,9 +137,9 @@ public class Ab_Key : GLib.Object {
   public bool is_null() {
     for(int i = 0; i < NLEN; i++) {
       if (t[i] > 0)
-        return true;
+        return false;
     }
-    return false;
+    return true;
   }
 
   /** @return the sum of this and k */
@@ -169,7 +169,7 @@ public class Ab_Key : GLib.Object {
    * Operation with k greater than this is not supported.
    */
   public Ab_Key minus(Ab_Key k)
-    requires (this.is_greater_than(k))
+    requires (this.is_greater_than(k) || this.equals(k))
   {
     uint32[] result = new uint32[NLEN];
     uint64 tmp, a, b;
