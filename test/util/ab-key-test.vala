@@ -52,6 +52,15 @@ public class Ab_Key_Test : Object {
                                                           (uint32)0x7FFFFFFF})));
   }
 
+  public static void test_dump () {
+    uint8[] half = {FF, FF, FF, FF, FF, FF, FF, FF, FF, FF,
+                    FF, FF, FF, FF, FF, FF, 7F, FF, FF, FF};
+
+    uint8[] buffer = new uint8[half.serialized_size()];
+    half.dump(ref buffer);
+    Ab_ArrayPrinter.printArray(ref buffer);
+  }
+
   public static void main (string[] args) {
     Test.init (ref args);
     Ab_Key_Test.init();
@@ -59,6 +68,7 @@ public class Ab_Key_Test : Object {
     Test.add_func ("/key/equals", test_equals);
     Test.add_func ("/key/add", test_plus);
     Test.add_func ("/key/minus", test_minus);
+    Test.add_func ("/key/dump", test_dump);
     Test.run ();
   }
 }
