@@ -90,7 +90,7 @@ public class Ab_Key : GLib.Object {
 
   /* @return the size in octet of a serialized key */
   public static ulong serialized_size() {
-    return KEY_SIZE;
+    return KEY_SIZE / 8;
   }
 
   /** Comparaison between two keys.
