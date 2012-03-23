@@ -80,7 +80,12 @@ public class Ab_Key : GLib.Object {
 
   /** Serialize into the provided buffer */
   public void dump(ref uint8[] buffer) {
-
+    uint8 *p = buffer;
+    for(int i = 0; i < NLEN; i++) {
+      uint32 nbr = Posix.htonl(t[i]);
+      Posix.memcpy(p, &nbr, sizeof(uint32));
+      p += sizeof(uint32);
+    }
   }
 
   /* @return the size in octet of a serialized key */
