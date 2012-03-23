@@ -1,6 +1,7 @@
 lib_LTLIBRARIES = libarboreutil@LIBARBORE_API_VERSION@.la
 
 libarboreutil@LIBARBORE_API_VERSION@_la_SOURCES = \
+	ab-array-printer.vala \
 	ab-key.vala \
 	ab-log.vala \
 	ab-serializable.vala \
